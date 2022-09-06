@@ -1,0 +1,8 @@
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\bin\Debug\TestConsoleTextEncryptor.exe.config
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\bin\Debug\TestConsoleTextEncryptor.exe
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\bin\Debug\TestConsoleTextEncryptor.pdb
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\obj\Debug\TestConsoleTextEncryptor.csproj.AssemblyReference.cache
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\obj\Debug\TestConsoleTextEncryptor.csproj.SuggestedBindingRedirects.cache
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\obj\Debug\TestConsoleTextEncryptor.csproj.CoreCompileInputs.cache
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\obj\Debug\TestConsoleTextEncryptor.exe
+D:\computer science projects\TextEncryptor\TextEncryptor\TestConsoleTextEncryptor\obj\Debug\TestConsoleTextEncryptor.pdb
