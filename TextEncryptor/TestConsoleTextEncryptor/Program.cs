@@ -7,8 +7,6 @@ namespace TestConsoleTextEncryptor
 {
     internal class Program
     {
-        //        hello world!
-        //        can you read me C#?
         private static byte[] IV = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         static void Main(string[] args)
