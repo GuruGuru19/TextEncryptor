@@ -53,6 +53,7 @@ namespace TestConsoleTextEncryptor
                 break;
             }
             List<string> lines = File.ReadAllLines(filePath).ToList();
+            string text1 = File.ReadAllText(filePath);
 
             Console.Write("please enter your encryption key\n... ");
             string key;
