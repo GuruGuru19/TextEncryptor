@@ -12,6 +12,10 @@ namespace TextEncryptor
     {
         public static string Encrypt(string text, string keyText, byte[] IV)
         {
+            if (text.Length < 1)
+            {
+                return "";
+            }
             byte[] key = Encoding.UTF8.GetBytes(keyText);
             AesManaged aes = new AesManaged();
             aes.Key = key;
@@ -31,6 +35,10 @@ namespace TextEncryptor
 
         public static string Decrypt(string text, string keyText, byte[] IV)
         {
+            if (text.Length<1)
+            {
+                return "";
+            }
             byte[] key = Encoding.UTF8.GetBytes(keyText);
             AesManaged aes = new AesManaged();
             aes.Key = key;

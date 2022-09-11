@@ -9,3 +9,13 @@ D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.exe
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.pdb
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.Form1.resources
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\bin\Debug\TextEncryptor.exe.config
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\bin\Debug\TextEncryptor.exe
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\bin\Debug\TextEncryptor.pdb
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.csprojAssemblyReference.cache
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.Form1.resources
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.Properties.Resources.resources
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.csproj.GenerateResource.cache
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.csproj.CoreCompileInputs.cache
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.exe
+C:\Users\itais\Desktop\text Encryptor\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.pdb

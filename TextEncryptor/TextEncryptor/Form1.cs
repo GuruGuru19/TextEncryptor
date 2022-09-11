@@ -65,7 +65,7 @@ namespace TextEncryptor
             {
                 save_Button.Enabled = file.Exists() && ((file.IsEncrypted(key) && keyValid) || (!file.IsEncrypted(key))); //pointing to a editable file -> enable the save option
 
-                save_Button.Enabled = textValueBox.Text == file.GetRealText(key).Replace(FileHelper.flag, "");// changes from last save? -> enable the save option
+                save_Button.Enabled = textValueBox.Text != file.GetRealText(key).Replace(FileHelper.flag, "");// changes from last save? -> enable the save option
 
                 original_button.Enabled = save_Button.Enabled;
             }
