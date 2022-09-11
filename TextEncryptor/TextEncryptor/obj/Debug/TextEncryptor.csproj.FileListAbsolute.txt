@@ -8,3 +8,4 @@ D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.csproj.CoreCompileInputs.cache
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.exe
 D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.pdb
+D:\computer science projects\TextEncryptor\TextEncryptor\TextEncryptor\obj\Debug\TextEncryptor.Form1.resources

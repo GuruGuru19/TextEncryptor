@@ -7,8 +7,6 @@ namespace TestConsoleTextEncryptor
 {
     internal class Program
     {
-        //        hello world!
-        //        can you read me C#?
         private static byte[] IV = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         static void Main(string[] args)
@@ -55,6 +53,7 @@ namespace TestConsoleTextEncryptor
                 break;
             }
             List<string> lines = File.ReadAllLines(filePath).ToList();
+            string text1 = File.ReadAllText(filePath);
 
             Console.Write("please enter your encryption key\n... ");
             string key;
