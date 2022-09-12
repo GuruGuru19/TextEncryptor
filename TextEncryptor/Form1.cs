@@ -14,10 +14,7 @@ namespace TextEncryptor
 {
     public partial class Form1 : Form
     {
-        //private bool pathValid = false;
         private bool keyValid = false;
-        //private bool fileEncrypted = false;
-
         private string key = "";
         
 
@@ -66,17 +63,27 @@ namespace TextEncryptor
                 save_Button.Enabled = file.Exists() && ((file.IsEncrypted(key) && keyValid) || (!file.IsEncrypted(key))); //pointing to a editable file -> enable the save option
 
                 save_Button.Enabled = textValueBox.Text != file.GetRealText(key).Replace(FileHelper.flag, "");// changes from last save? -> enable the save option
-
-                original_button.Enabled = save_Button.Enabled;
             }
-            
+            else
+            {
+                save_Button.Enabled = textValueBox.Text != file.GetFileText();// changes from last save? -> enable the save option
+            }
+
+            original_button.Enabled = save_Button.Enabled;//if you can save changes it means you can also revert them
+
+            if (save_Button.Enabled) // you cant encrypt with unsaved text
+            {
+                o_decrypt_button.Enabled = false;
+                o_encrypt_button.Enabled = false;
+            }
+
         }
 
         public void UpdateText()
         {
-            if (!file.Exists() || !keyValid)// if the path dosent point to a .txt file
+            if (!file.Exists() || !keyValid)// in cases we dont need to look for an encrypted file
             {
-                textValueBox.Text = "";
+                textValueBox.Text = file.GetFileText();
                 return;
             }
 
@@ -95,11 +102,6 @@ namespace TextEncryptor
             
             textValueBox.Text = file.GetRealText(key).Replace(FileHelper.flag, "");//TODO: here
             
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void LocateFile_Button_Click(object sender, EventArgs e)
@@ -136,20 +138,6 @@ namespace TextEncryptor
             UpdateText();
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void save_Button_Click(object sender, EventArgs e)
         {
@@ -173,30 +161,57 @@ namespace TextEncryptor
                     string textInBox = textValueBox.Text;
                     file.SetFileText(textInBox);
                 }
+                else if (!keyValid)
+                {
+                    string textInBox = textValueBox.Text;
+                    file.SetFileText(textInBox);
+                }
             }
             UpdateInputs();
         }
 
         private void original_button_Click(object sender, EventArgs e)
         {
+            if (!keyValid)// if the key is not valid we cant use 'GetRealText(key)'
+            {
+                textValueBox.Text = file.GetFileText();
+            }
             textValueBox.Text = file.GetRealText(key).Replace(FileHelper.flag, "");
         }
 
         private void o_decrypt_button_Click(object sender, EventArgs e)
         {
-            //if (file.IsEncrypted(key) && keyValid)
-            //{
-                
-            //    string decryptedText = Encryptor.Encrypt(file., key, IV);
-            //    File.WriteAllText(filePath_textBox.Text, decryptedText);
-            //    realText = decryptedText;
-            //    fileText = decryptedText;
-            //}
+            if (file.Exists() && keyValid && file.IsEncrypted(key))
+            {
+                string newText = file.GetRealText(key).Replace(FileHelper.flag, "");
+                file.SetFileText(newText);
+                new Alert("File successfully Decrypted");
+            }
+            else
+            {
+                o_decrypt_button.Enabled = false;
+                new Alert("File was unable to Decrypt");
+            }
+            UpdateInputs();
+            UpdateText();
         }
 
         private void o_encrypt_button_Click(object sender, EventArgs e)
         {
-
+            if (file.Exists() && keyValid && !file.IsEncrypted(key))
+            {
+                string textToEncrypt = file.GetFileText() + FileHelper.flag;
+                string newText = Encryptor.Encrypt(textToEncrypt, key, FileHelper.IV);
+                file.SetFileText(newText);
+                new Alert("File successfully Encrypted");
+            }
+            else
+            {
+                o_encrypt_button.Enabled = false;
+                new Alert("File was unable to Encrypt");
+            }
+            UpdateInputs();
+            UpdateText();
         }
 
         private void textValueBox_TextChanged(object sender, EventArgs e)
@@ -212,9 +227,8 @@ namespace TextEncryptor
                 keyValid = false;
                 keyStatus.Text = "select key";
                 keyStatus.ForeColor = Color.Black;
-                return;
             }
-            if (key_textBox.Text.Length>16)
+            else if (key_textBox.Text.Length>16)
             {
                 key = "";
                 keyValid = false;
@@ -242,6 +256,26 @@ namespace TextEncryptor
             }
             UpdateInputs();
             UpdateText();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

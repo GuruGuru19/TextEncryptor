@@ -32,6 +32,12 @@ namespace TextEncryptor
             return File.Exists(path);
         }
 
+        public string GetFileText()
+        {
+            UpdateFileText();
+            return fileText;
+        }
+
         public string GetRealText(string key)
         {
             string text = fileText;
@@ -48,7 +54,11 @@ namespace TextEncryptor
 
                 //throw;
             }
-            
+            catch (System.Security.Cryptography.CryptographicException)// wrong key
+            {
+
+            }
+
             return text;
         }
 
@@ -63,8 +73,12 @@ namespace TextEncryptor
             catch (System.FormatException)
             {
                 
-                return false;
+                return false; // IDK
                 throw;
+            }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                return false;// wrong key
             }
             
         }
@@ -74,6 +88,10 @@ namespace TextEncryptor
             if (File.Exists(path))
             {
                 fileText = File.ReadAllText(path);
+            }
+            else
+            {
+                fileText = "";
             }
         }
 
