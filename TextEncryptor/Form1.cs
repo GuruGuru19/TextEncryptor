@@ -86,22 +86,8 @@ namespace TextEncryptor
                 textValueBox.Text = file.GetFileText();
                 return;
             }
-
-            //string filePath = filePath_textBox.Text;
-            //string[] fileTextLines = File.ReadAllLines(filePath);//gets the lines of text from the .txt file
-
-            //fileText = string.Join("", fileTextLines);//updates the 'fileText'
-
-            //string text = string.Join("\r\n", fileTextLines);// builds the presentable text
-
-            //if (fileEncrypted && keyValid)// if we can decrypt then we do it
-            //{
-            //    text = Encryptor.Decrypt(fileText, key, IV);
-            //}
-            //realText = text;// updates the 'realText'
             
             textValueBox.Text = file.GetRealText(key).Replace(FileHelper.flag, "");//TODO: here
-            
         }
 
         private void LocateFile_Button_Click(object sender, EventArgs e)
@@ -109,6 +95,12 @@ namespace TextEncryptor
             DialogResult dialogResult = openFileDialog1.ShowDialog(this); // opens the LocateFile dialog and updates the 'filePath_textBox.Text'
             if (dialogResult == DialogResult.OK)
             {
+                if (File.Exists(openFileDialog1.FileName) && File.ReadAllText(openFileDialog1.FileName).Contains(FileHelper.flag))
+                {
+                    new Alert("File's Text is InValid");
+                    filePath_textBox.Text = "";
+                    return;
+                }
                 filePath_textBox.Text = openFileDialog1.FileName;
             }
         }
@@ -118,22 +110,28 @@ namespace TextEncryptor
             file = new FileHelper(filePath_textBox.Text);
             if (file.Exists())
             {
-                if (filePath_textBox.Text.Contains(".txt"))
+                if (filePath_textBox.Text.Contains(".txt"))//file found <- file ecists and is a .txt
                 {
                     pathStatus.Text = "file found";
                     pathStatus.ForeColor = Color.DarkGreen;
                 }
-                else
+                else// not a .txt file
                 {
                     pathStatus.Text = "path needs to lead to a .txt file";
                     pathStatus.ForeColor = Color.DarkRed;
                 }
             }
-            else
+            else if (filePath_textBox.Text.Equals(""))// file path input is empty
+            {
+                pathStatus.Text = "Select File";
+                pathStatus.ForeColor = Color.Black;
+            }
+            else// path doesnt point to a file
             {
                 pathStatus.Text = "Invalid path";
                 pathStatus.ForeColor = Color.DarkRed;
             }
+            
             UpdateInputs();
             UpdateText();
         }
@@ -141,27 +139,22 @@ namespace TextEncryptor
 
         private void save_Button_Click(object sender, EventArgs e)
         {
-            if (textValueBox.Text.Contains(FileHelper.flag))
+            if (textValueBox.Text.Contains(FileHelper.flag))//stops you from saving a file that contains the flag
             {
-
-                //cant save text with flag in it
+                save_Button.Enabled = false;
+                new Alert("Invalid text: flag");
                 return;
             }
             if (file.Exists())
             {
-                if (keyValid && file.IsEncrypted(key))
+                if (keyValid && file.IsEncrypted(key)) // if the file text is encrypted -> encrypt new text from the textBox
                 {
                     string textInBox = textValueBox.Text;
                     textInBox += FileHelper.flag;
                     string encryptedData = Encryptor.Encrypt(textInBox, key, FileHelper.IV);
                     file.SetFileText(encryptedData);
                 }
-                else if (keyValid && !file.IsEncrypted(key))
-                {
-                    string textInBox = textValueBox.Text;
-                    file.SetFileText(textInBox);
-                }
-                else if (!keyValid)
+                else if ((keyValid && !file.IsEncrypted(key))|| !keyValid) // if the file text is not encrypted -> just save the new text
                 {
                     string textInBox = textValueBox.Text;
                     file.SetFileText(textInBox);
@@ -170,7 +163,7 @@ namespace TextEncryptor
             UpdateInputs();
         }
 
-        private void original_button_Click(object sender, EventArgs e)
+        private void original_button_Click(object sender, EventArgs e) //revert unsaved changes
         {
             if (!keyValid)// if the key is not valid we cant use 'GetRealText(key)'
             {
